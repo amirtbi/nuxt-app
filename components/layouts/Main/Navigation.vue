@@ -1,5 +1,10 @@
 <template>
-  <v-navigation-drawer color="deep-purple" v-model="drawer">
+  <v-navigation-drawer
+    color="purple lighten-5"
+    app
+    v-model="displaySideNav"
+    fixed
+  >
     <template v-slot:prepend>
       <v-list-item two-line>
         <v-list-item-avatar>
@@ -36,20 +41,16 @@
 
 <script>
 export default {
-  props: {
-    drawer: {
-      type: Boolean,
-    },
-  },
+  props: ["drawer", "navLinks"],
   data() {
     return {
-      group: null,
-      navLinks: [
-        { title: "Home", icon: "mdi-home", route: "/" },
-        { title: "About", icon: "mdi-store-cog", route: "/about" },
-        { title: "Posts", icon: "mdi-inbox", route: "/posts" },
-      ],
+      // displaySideNav: this.drawer,
     };
+  },
+  computed: {
+    displaySideNav() {
+      return this.drawer;
+    },
   },
 };
 </script>

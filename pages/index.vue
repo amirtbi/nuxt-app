@@ -1,15 +1,22 @@
 <template>
   <v-container>
     <h1 class="mb-2">All Posts</h1>
-    <Posts :posts="posts" />
+    <v-row>
+      <PostLists
+        v-for="post in posts"
+        :key="post.id"
+        :post="post"
+        :url="post.url"
+      />
+    </v-row>
   </v-container>
 </template>
 
 <script>
-import Posts from "../components/Posts/PostLists.vue";
+import PostLists from "../components/Posts/PostLists.vue";
 export default {
   components: {
-    Posts,
+    PostLists,
   },
   layout: "default",
   data() {
@@ -17,22 +24,22 @@ export default {
       posts: [
         {
           id: 1,
-          title: "Learning Vue.js from scratch",
-          imageSrc: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
+          title: "Learning Vue.js",
+          url: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
           previewText:
             "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam suscipit ratione ipsum fugiat nisi perspiciatis est, ipsa in nostrumvoluptates dolore, fuga impedit, aliquam dolor perferendis totam corporis. Similique, omnis?",
         },
         {
           id: 2,
           title: "Learning Python",
-          imageSrc: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
+          url: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
           previewText:
             "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam suscipit ratione ipsum fugiat nisi perspiciatis est, ipsa in nostrumvoluptates dolore, fuga impedit, aliquam dolor perferendis totam corporis. Similique, omnis?",
         },
         {
           id: 3,
           title: "Learning Angular",
-          imageSrc: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
+          url: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
           previewText:
             "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam suscipit ratione ipsum fugiat nisi perspiciatis est, ipsa in nostrumvoluptates dolore, fuga impedit, aliquam dolor perferendis totam corporis. Similique, omnis?",
         },

@@ -30,10 +30,4 @@ html,
 body {
   font-family: "Open Sans", sans-serif !important;
 }
-#app,
-.v-application {
-  background: url("https://ohlaladani.com.br/wp-content/uploads/wallpaper-OHLALADANI_DESKTOP_WALLPAPERS_AVENTURA-2.jpg")
-    no-repeat center center !important;
-  background-size: cover !important;
-}
 </style>

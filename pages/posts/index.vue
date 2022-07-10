@@ -1,15 +1,23 @@
 <template>
   <v-container>
     <h1 class="mb-2">Get the latest news</h1>
-    <Posts :posts="posts" />
+    <v-row>
+      <Post
+        v-for="post in posts"
+        :post="post"
+        :key="post.id"
+        :url="post.url"
+        :posts="posts"
+      />
+    </v-row>
   </v-container>
 </template>
 
 <script>
-import Posts from "../../components/Posts/PostLists.vue";
+import Post from "../../components/Posts/PostLists.vue";
 export default {
   components: {
-    Posts,
+    Post,
   },
   layout: "default",
   data() {
@@ -17,22 +25,22 @@ export default {
       posts: [
         {
           id: 1,
-          title: "Learning Vue.js from scratch",
-          imageSrc: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
+          title: "Learning Vue.js ",
+          url: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
           previewText:
             "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam suscipit ratione ipsum fugiat nisi perspiciatis est, ipsa in nostrumvoluptates dolore, fuga impedit, aliquam dolor perferendis totam corporis. Similique, omnis?",
         },
         {
           id: 2,
           title: "Learning Python",
-          imageSrc: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
+          url: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
           previewText:
             "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam suscipit ratione ipsum fugiat nisi perspiciatis est, ipsa in nostrumvoluptates dolore, fuga impedit, aliquam dolor perferendis totam corporis. Similique, omnis?",
         },
         {
           id: 3,
           title: "Learning Angular",
-          imageSrc: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
+          url: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
           previewText:
             "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam suscipit ratione ipsum fugiat nisi perspiciatis est, ipsa in nostrumvoluptates dolore, fuga impedit, aliquam dolor perferendis totam corporis. Similique, omnis?",
         },

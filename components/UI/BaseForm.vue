@@ -20,7 +20,7 @@
     </v-textarea>
     <v-text-field
       label="url input"
-      v-model="url"
+      v-model="imageUrl"
       filled
       prepend-icon="mdi-camera"
     ></v-text-field>
@@ -65,7 +65,7 @@ export default {
     postTitle: "",
     postPreview: "",
     author: "",
-    url: "",
+    imageUrl: "",
     chosenImage: null,
     data: null,
     postNameRules: [
@@ -106,7 +106,7 @@ export default {
           title: this.postName,
           previewText: this.postPreview,
           imageSrc: this.chosenImage,
-          url: this.url,
+          imageUrl: this.imageUrl,
         };
         // this.importImage();
         this.$emit("submitForm", postInfo);

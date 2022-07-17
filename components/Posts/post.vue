@@ -1,25 +1,29 @@
 <template>
-  <v-card class="mx-auto">
+  <v-card max-width="600" class="mx-auto">
     <v-card-text class="text-center">
-      <p class="text-h4 text--primary">{{ $route.params.id }}</p>
+      <!-- Image -->
+      <v-img height="250" :src="loadedPost.imageUrl"></v-img>
+      <!-- Title of post -->
+      <p class="text-h4 text--primary">{{ loadedPost.title }}</p>
       <div>
-        <p class="my-0">Last updated:XXXX</p>
-        <p>Written By:XXXX</p>
+        <!-- Date -->
+        <p class="my-0">Last updated:{{ loadedPost.date }}</p>
+        <!-- Author -->
+        <p>Written By:{{ loadedPost.author }}</p>
       </div>
       <div class="text--primary">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum nemo,
-        aliquam deserunt fugit, quae exercitationem alias dolores adipisci rerum
-        porro nesciunt pariatur, soluta ipsam beatae! Sequi, eius esse? Nulla,
-        vitae?
+        {{ loadedPost.content }}
       </div>
       <div>
         <p class="font-weight-medium text--primary">
           Let me know if you want to know about me, Email to :<span
-            >Torabi46@gmail.com</span
+            color="primary"
+            >{{ loadedPost.email }}</span
           >
         </p>
       </div>
     </v-card-text>
+
     <v-card-actions>
       <v-btn text color="teal accent-4">
         <nuxt-link to="/posts">Back to Posts</nuxt-link>
@@ -36,7 +40,14 @@ export default {
       type: String,
       required: true,
     },
+    loadedPost: {
+      type: Object,
+      required: true,
+    },
+    res: {
+      type: Object,
+      required: false,
+    },
   },
-  
 };
 </script>

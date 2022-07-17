@@ -1,9 +1,12 @@
 <template>
   <v-navigation-drawer
     color="purple lighten-5"
-    app
-    v-model="displaySideNav"
+    :value="value"
+    @input="$emit('input', $event)"
+    v-if="value"
     fixed
+    bottom
+    app
   >
     <template v-slot:prepend>
       <v-list-item two-line>
@@ -17,6 +20,11 @@
           <v-list-item-title>Jane Smith</v-list-item-title>
           <v-list-item-subtitle>Logged In</v-list-item-subtitle>
         </v-list-item-content>
+        <div>
+          <v-btn icon @click="emitClose">
+            <v-icon>mdi-menu</v-icon>
+          </v-btn>
+        </div>
       </v-list-item>
     </template>
     <v-list nav dense>
@@ -41,16 +49,22 @@
 
 <script>
 export default {
-  props: ["drawer", "navLinks"],
+  props: ["navLinks", "value"],
   data() {
-    return {
-      // displaySideNav: this.drawer,
-    };
+    return {};
   },
-  computed: {
-    displaySideNav() {
-      return this.drawer;
+  computed: {},
+  methods: {
+    emitClose() {
+      this.$emit("emitClose");
     },
   },
 };
 </script>
+
+<style scoped>
+.v-image_image {
+  background-image: linear-gradient(black, black),
+    url("https://demos.creative-tim.com/material-dashboard-pro-material-ui-v4/static/media/sidebar-2.42e96f8d.jpg");
+}
+</style>

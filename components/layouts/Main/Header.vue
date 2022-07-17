@@ -1,9 +1,12 @@
 <template>
   <div>
     <v-app-bar app color="deep-purple">
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon
+        v-if="!drawer"
+        @click.stop="drawer = !drawer"
+      ></v-app-bar-nav-icon>
 
-      <v-toolbar-title>{{
+      <v-toolbar-title v-if="$route.name">{{
         $route.path === "/" ? "Home" : pageTitle.toUpperCase()
       }}</v-toolbar-title>
       <v-spacer />
@@ -46,7 +49,7 @@
       </v-container>
     </v-app-bar>
     <!--Navigation bar-->
-    <SideNav :drawer="drawer" :nav-links="navLinks" />
+    <SideNav v-model="drawer" :nav-links="navLinks" @emitClose="toggleNav" />
   </div>
 </template>
 
@@ -60,6 +63,7 @@ export default {
     pageTitle: {
       type: String,
       required: false,
+      default: "",
     },
   },
   data() {
@@ -75,7 +79,16 @@ export default {
       ],
     };
   },
+  methods: {
+    toggleNav() {
+      this.drawer = false;
+    },
+  },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.v-toolbar__title {
+  width: 120px !important;
+}
+</style>

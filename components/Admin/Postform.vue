@@ -20,7 +20,7 @@
     </v-textarea>
     <v-text-field
       label="url input"
-      v-model="editedPost.url"
+      v-model="editedPost.imageUrl"
       filled
       prepend-icon="mdi-camera"
     ></v-text-field>
@@ -58,7 +58,7 @@ export default {
       valid: true,
       editedPost: this.loadedPost
         ? { ...this.loadedPost }
-        : { title: "", author: "", previewText: "", url: "", imageSrc: "" },
+        : { title: "", author: "", previewText: "", imageUrl: "" },
 
       chosenImage: null,
       data: null,
@@ -89,6 +89,9 @@ export default {
       this.editedPost.previewText = "";
       this.editedPost.url = "";
       this.$emit("onCancel");
+      if (!!this.loadedPost) {
+        this.$router.push("/admin");
+      }
     },
     submitPost() {
       const formIsValid = this.$refs.form.validate();
@@ -98,7 +101,7 @@ export default {
           title: this.editedPost.title,
           author: this.editedPost.author,
           previewText: this.editedPost.previewText,
-          url: this.editedPost.url,
+          imageUrl: this.editedPost.imageUrl,
         };
 
         this.$emit("submitForm", newPost);

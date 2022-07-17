@@ -11,7 +11,8 @@
   </v-row>
 </template>
 <script>
-import AdminPostForm from "../../../components/UI/BaseForm.vue";
+import { mapActions } from "vuex";
+import AdminPostForm from "../../../components/Admin/Postform.vue";
 export default {
   components: {
     AdminPostForm,
@@ -21,7 +22,7 @@ export default {
   },
   methods: {
     AddPost(post) {
-      this.posts.push(post);
+      this.$store.dispatch("postModule/setPosts", post);
       this.$router.push("/admin");
     },
     navigatePage() {

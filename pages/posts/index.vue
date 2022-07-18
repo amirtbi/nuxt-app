@@ -28,17 +28,15 @@ export default {
     Post,
   },
   layout: "default",
-  // Loading data from server
-  async asyncData(context) {
-    console.log("Async data is executed", context);
-    return {};
-  },
+
   data() {
     return {};
   },
   computed: {
     ...mapGetters("postModule", ["posts", "message"]),
   },
-  created() {},
+  async created() {
+    // await this.$store.dispatch("postModule/fetchPosts");
+  },
 };
 </script>

@@ -23,19 +23,21 @@ export default {
     PostLists,
   },
   layout: "default",
-  async asyncData(context) {
-    const response = await getRequest("posts");
-    for (let key in response.data) {
-      const postArray = [];
-      postArray.push({ ...response.data[key], id: response.data });
-      context.store.dispatch("postModule/setPosts", postArray);
-    }
-  },
+  // async asyncData(context) {
+  //   const response = await getRequest("posts");
+  //   for (let key in response.data) {
+  //     const postArray = [];
+  //     postArray.push({ ...response.data[key], id: response.data });
+  //     context.store.dispatch("postModule/setPosts", postArray);
+  //   }
+  // },
   data() {
     return {};
   },
   computed: {
-    ...mapGetters("postModule", ["posts"]),
+    posts() {
+      return this.$store.getters["postModule/posts"];
+    },
   },
 };
 </script>

@@ -1,6 +1,6 @@
 export default {
   setPosts(state, payload) {
-    state.loadedPosts.push(payload);
+    state.loadedPosts = payload;
   },
   findPost(state, postId) {
     const postFind = state.loadedPosts.find((post) => post.id == postId);

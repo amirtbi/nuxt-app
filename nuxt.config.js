@@ -87,9 +87,9 @@ export default {
       },
     },
   },
-  router: {
-    middleware: "routeData",
-  },
+  // router: {
+  //   middleware: "routeData",
+  // },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: ["lodash-es", "vue-chart-3"],

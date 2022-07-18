@@ -11,7 +11,7 @@
   </v-row>
 </template>
 <script>
-import { mapActions } from "vuex";
+import axios from "axios";
 import AdminPostForm from "../../../components/Admin/Postform.vue";
 export default {
   components: {
@@ -21,9 +21,19 @@ export default {
     return {};
   },
   methods: {
-    AddPost(post) {
-      this.$store.dispatch("postModule/setPosts", post);
-      this.$router.push("/admin");
+    async AddPost(post) {
+      const api = "https://nuxt-2-cc469-default-rtdb.firebaseio.com/";
+      try {
+        const response = await axios.post(
+          "https://nuxt-2-cc469-default-rtdb.firebaseio.com/posts.json",
+          post
+        );
+        console.log("response", response.data);
+        // this.$store.dispatch("postModule/setPosts", response.data);
+        this.$router.push("/admin");
+      } catch (error) {
+        console.log("error happend");
+      }
     },
     navigatePage() {
       this.$router.push("/admin");

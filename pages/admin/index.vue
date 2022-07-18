@@ -42,6 +42,7 @@
 
 <script>
 import axios from "axios";
+import { postRequest } from "../../assets/js/axios/crud";
 import { mapActions, mapGetters } from "vuex";
 import PostForm from "../../components/Admin/Postform.vue";
 import BaseButton from "../../components/UI/BaseButton.vue";
@@ -66,8 +67,9 @@ export default {
   },
   methods: {
     ...mapActions("postModule", ["setPosts"]),
-    addNewPost(newPost) {
-      this.$store.dispatch("postModule/setPosts", newPost);
+    async addNewPost(newPost) {
+      const response = await postRequest("posts", newPost);
+      console.log("response added", response);
     },
     clickListener() {
       this.show = !this.show;

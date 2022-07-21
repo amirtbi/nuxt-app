@@ -10,15 +10,12 @@
         :posts="posts"
       />
     </v-row>
-    <v-row>
-      <h1>new post</h1>
-      <p>{{ message.title }}</p>
-    </v-row>
   </v-container>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import axios from "axios";
 const Post = () => ({
   component: import("../../components/Posts/PostLists.vue"),
 });
@@ -28,14 +25,24 @@ export default {
     Post,
   },
   layout: "default",
-
+  async asyncData(context) {
+    const response = await axios.get(
+      "https://nuxt-2-cc469-default-rtdb.firebaseio.com/posts.json"
+    );
+    const posts = [];
+    for (const key in response.data) {
+      posts.push({ ...response.data[key], id: key });
+    }
+    context.store.commit("postModule/setPosts", posts);
+    return { posts };
+  },
   data() {
     return {};
   },
   computed: {
-    ...mapGetters("postModule", ["posts", "message"]),
+    // ...mapGetters("postModule", ["posts", "message"]),
   },
-  async created() {
+  created() {
     // await this.$store.dispatch("postModule/fetchPosts");
   },
 };

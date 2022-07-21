@@ -33,12 +33,7 @@
     ></v-file-input> -->
 
     <div>
-      <v-btn
-        :disabled="!valid"
-        color="success"
-        class="mr-4"
-        @click="submitPost"
-      >
+      <v-btn :disabled="!valid" color="success" class="mr-4" @click="emitPost">
         Save
       </v-btn>
       <v-btn color="gray" class="mr-4" @click="resetForm"> Cancel </v-btn>
@@ -47,10 +42,16 @@
 </template>
 <script>
 export default {
+  inject: ["submitPost", "cancelHanlder"],
   props: {
     loadedPost: {
       type: Object,
       required: false,
+    },
+    id: {
+      type: String,
+      required: false,
+      default: "",
     },
   },
   data() {
@@ -88,12 +89,12 @@ export default {
       this.editedPost.author = "";
       this.editedPost.previewText = "";
       this.editedPost.url = "";
-      this.$emit("onCancel");
+      this.cancelHanlder();
       if (!!this.loadedPost) {
         this.$router.push("/admin");
       }
     },
-    submitPost() {
+    emitPost() {
       const formIsValid = this.$refs.form.validate();
       if (formIsValid) {
         const newPost = {
@@ -104,8 +105,8 @@ export default {
           imageUrl: this.editedPost.imageUrl,
         };
 
-        this.$emit("submitForm", newPost);
-        this.$emit("onCancel");
+        this.submitPost(newPost);
+        this.cancelHanlder();
       }
     },
   },

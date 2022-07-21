@@ -6,6 +6,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import axios from "axios";
 import PostItem from "../../../components/Posts/post.vue";
 export default {
   layout: "default",
@@ -13,24 +14,20 @@ export default {
     PostItem,
   },
 
-  // asyncData(context) {
-  //   return {
-  //     loadedPost: {
-  //       id: new Date().toISOString(),
-  //       title: `Learning Vue.js with (ID:${context.params.id})`,
-  //       author: "Max",
-  //       date: new Date().toLocaleDateString(),
-  //       content: "Learning all about Vue.js 3",
-  //       imageUrl: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
-  //       email: "torabi46@gmail.com",
-  //     },
-  //   };
-  // },
+  async asyncData(context) {
+    const response = await axios.get(
+      "https://nuxt-2-cc469-default-rtdb.firebaseio.com/posts/" +
+        context.params.id +
+        ".json"
+    );
+    const post = response.data;
+    return { post };
+  },
   computed: {
-    ...mapGetters("postModule", ["post"]),
+    // ...mapGetters("postModule", ["post"]),
   },
   created() {
-    this.$store.commit("postModule/findPost", this.$route.params.id);
+    // this.$store.commit("postModule/findPost", this.$route.params.id);
   },
 };
 </script>

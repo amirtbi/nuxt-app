@@ -15,7 +15,7 @@
           >Create a post</BaseButton
         >
         <v-card max-width="500" width="500" class="pa-6" v-if="show">
-          <PostForm @submitForm="addNewPost" @onCancel="show = false" />
+          <PostForm />
         </v-card>
         <h1 class="mt-2">Existing Posts</h1>
       </v-col>
@@ -62,6 +62,12 @@ export default {
       show: false,
     };
   },
+  provide() {
+    return {
+      submitPost: this.addNewPost,
+      cancelHanlder: this.hideForm,
+    };
+  },
   computed: {
     ...mapGetters("postModule", ["posts"]),
   },
@@ -70,6 +76,9 @@ export default {
     async addNewPost(newPost) {
       const response = await postRequest("posts", newPost);
       console.log("response added", response);
+    },
+    hideForm() {
+      this.show = false;
     },
     clickListener() {
       this.show = !this.show;

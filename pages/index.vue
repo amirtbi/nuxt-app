@@ -23,14 +23,17 @@ export default {
     PostLists,
   },
   layout: "default",
-  // async asyncData(context) {
-  //   const response = await getRequest("posts");
-  //   for (let key in response.data) {
-  //     const postArray = [];
-  //     postArray.push({ ...response.data[key], id: response.data });
-  //     context.store.dispatch("postModule/setPosts", postArray);
-  //   }
-  // },
+  async asyncData() {
+    const response = await axios.get(
+      "https://nuxt-2-cc469-default-rtdb.firebaseio.com/posts.json"
+    );
+    const posts = [];
+    for (const key in response.data) {
+      posts.push({ ...response.data[key], id: key });
+    }
+
+    return { posts };
+  },
   data() {
     return {};
   },

@@ -5,7 +5,7 @@
         <v-card-title class="font-weight-bold justify-center"
           >Edit Post</v-card-title
         >
-        <AdminPostForm :loaded-post="post" />
+        <AdminPostForm :id="postId" :loaded-post="post" />
       </v-card>
     </v-col>
   </v-row>
@@ -25,23 +25,17 @@ export default {
     },
   },
   data() {
-    return {
-      // loadedPost: {
-      //   id: new Date().toISOString(),
-      //   author: "Amir",
-      //   title: "Learning Vue.js",
-      //   previewText: "asasas",
-      //   imageSrc: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
-      // },
-    };
+    return {};
   },
   computed: {
     ...mapGetters("postModule", ["post"]),
+    postId() {
+      return this.$route.params.postId;
+    },
   },
   created() {
     //Find post
     this.$store.commit("postModule/findPost", this.$route.params.postId);
-    console.log(this.$route.params.postId);
   },
 };
 </script>

@@ -27,12 +27,16 @@ export async function deleteRequest(url, payload) {
     console.log(error);
   }
 }
-export async function putRequest(url, payload) {
+export async function putRequest(Id, post) {
   try {
-    const response = await axiosClient.put(`${url}/${payload}`);
+    const api = "/posts/" + Id + ".json";
+
+    console.log("api", api);
+    const response = await axiosClient.put(api, post);
+    console.log(response.data);
     return response.data;
   } catch (error) {
-    console.log(CanceledError);
+    console.log(error.message);
   }
 }
 

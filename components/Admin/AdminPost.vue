@@ -42,7 +42,7 @@
 </template>
 <script>
 export default {
-  inject: ["cancelHanlder", "submitPost"],
+  inject: ["cancelHanlder", "modifyPost"],
   props: {
     loadedPost: {
       type: Object,
@@ -109,8 +109,8 @@ export default {
           previewText: this.editedPost.previewText,
           imageUrl: this.editedPost.imageUrl,
         };
-
-        this.submitPost(newPost);
+        
+        this.modifyPost(newPost);
 
         this.cancelHanlder();
       }

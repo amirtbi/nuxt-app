@@ -1,5 +1,9 @@
 import axios from "axios";
-import { getRequest } from "../../assets/js/axios/crud.js";
+import {
+  getRequest,
+  postRequest,
+  putRequest,
+} from "../../assets/js/axios/crud.js";
 
 export default {
   nuxtServerInit(vueContext) {
@@ -20,7 +24,12 @@ export default {
   },
   setPosts(context, posts) {
     console.log("new post", posts);
+
     context.commit("setPosts", posts);
+  },
+  async createNewPost(context, post) {
+    const response = await postRequest(post);
+    console.log("response post", response);
   },
   async fetchPosts(context) {
     const response = await getRequest("posts");
@@ -30,5 +39,10 @@ export default {
       postArray.push({ ...response.data[key], id: new Date().toISOString() });
       context.dispatch("setPosts", postArray);
     }
+  },
+  async editPost(context) {
+    await putRequest(postId, post);
+    await context.dispatch("fetchPosts");
+    console.log("Edited post", response);
   },
 };

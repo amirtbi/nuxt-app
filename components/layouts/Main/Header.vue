@@ -24,25 +24,26 @@
                   <v-icon>mdi-view-grid-outline</v-icon>
                 </v-btn>
               </template>
-              <v-card>
-                <v-list>
-                  <v-list-item
-                    nuxt
-                    v-for="(item, index) in navLinks"
-                    :key="index"
-                    :to="item.route"
-                  >
-                    <v-list-item-title>{{ item.title }}</v-list-item-title>
-                  </v-list-item>
-                </v-list>
-              </v-card>
+              <UserCard />
             </v-menu>
-            <v-avatar size="36px">
-              <img
-                alt="Avatar"
-                src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"
-              />
-            </v-avatar>
+            <v-menu
+              v-model="card"
+              :close-on-content-click="true"
+              :nudge-width="200"
+              offset-y
+              transition="scale-transition"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-avatar v-bind="attrs" v-on="on" size="36px">
+                  <img
+                    alt="Avatar"
+                    src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"
+                  />
+                </v-avatar>
+              </template>
+              <UserCard />
+            </v-menu>
+
             <span class="ml-2 text-h7 white--text">Amir</span>
           </v-col>
         </v-row>
@@ -55,9 +56,11 @@
 
 <script>
 import SideNav from "./Navigation.vue";
+import UserCard from "./userCard.vue";
 export default {
   components: {
     SideNav,
+    UserCard,
   },
   props: {
     pageTitle: {
@@ -71,11 +74,17 @@ export default {
       drawer: false,
       group: null,
       menu: false,
+      card: false,
       navLinks: [
         { title: "Home", icon: "mdi-home", route: "/" },
         { title: "About", icon: "mdi-store-cog", route: "/about" },
         { title: "Blog", icon: "mdi-inbox", route: "/posts" },
         { title: "Admin", icon: "mdi-shield-crown-outline", route: "/admin" },
+      ],
+      links: [
+        { title: "Profile", icon: "mdi-account" },
+        { title: "Messages", icon: "mdi-message-text-outline" },
+        { title: "Settings", icon: "mdi-cog" },
       ],
     };
   },

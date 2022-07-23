@@ -5,7 +5,7 @@
         <v-card-title class="font-weight-bold justify-center"
           >Create a new Post</v-card-title
         >
-        <AdminPostForm @submitForm="AddPost" @onCancel="navigatePage" />
+        <AdminPostForm />
       </v-card>
     </v-col>
   </v-row>
@@ -21,20 +21,7 @@ export default {
     return {};
   },
   methods: {
-    async AddPost(post) {
-      const api = "https://nuxt-2-cc469-default-rtdb.firebaseio.com/";
-      try {
-        const response = await axios.post(
-          "https://nuxt-2-cc469-default-rtdb.firebaseio.com/posts.json",
-          post
-        );
-        console.log("response", response.data);
-        // this.$store.dispatch("postModule/setPosts", response.data);
-        this.$router.push("/admin");
-      } catch (error) {
-        console.log("error happend");
-      }
-    },
+   
     navigatePage() {
       this.$router.push("/admin");
     },

@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center">
     <v-col cols="12" class="d-flex justify-center text-center">
-      <v-card width="600" max-width="600" class="pa-8">
+      <v-card v-if="show" width="600" max-width="600" class="pa-8">
         <v-card-title class="font-weight-bold justify-center"
           >Edit Post</v-card-title
         >
@@ -13,7 +13,10 @@
 
 <script>
 import { mapGetters } from "vuex";
-import AdminPostForm from "../../../components/Admin/Postform.vue";
+import { axios } from "axios";
+import { putRequest } from "../../../assets/js/axios/crud";
+import AdminPostForm from "../../../components/Admin/AdminPost.vue";
+
 export default {
   components: {
     AdminPostForm,
@@ -25,12 +28,28 @@ export default {
     },
   },
   data() {
-    return {};
+    return { show: true };
+  },
+  provide() {
+    return {
+      cancelHanlder: this.hideForm,
+      modifyPost: this.editPost,
+    };
   },
   computed: {
     ...mapGetters("postModule", ["post"]),
     postId() {
       return this.$route.params.postId;
+    },
+  },
+  methods: {
+    hideForm() {
+      this.show = false;
+    },
+    async editPost(editedPost) {
+      await putRequest(this.$route.params.postId, editedPost);
+      
+      this.$router.push("/");
     },
   },
   created() {

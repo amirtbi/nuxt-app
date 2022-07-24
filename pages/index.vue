@@ -17,13 +17,13 @@ import { mapGetters } from "vuex";
 import PostLists from "../components/Posts/PostLists.vue";
 import axios from "axios";
 import { getRequest } from "../assets/js/axios/crud";
-import { propsToAttrMap } from "@vue/shared";
+
 export default {
   components: {
     PostLists,
   },
   layout: "default",
-  async asyncData() {
+  async asyncData(context) {
     const response = await axios.get(
       "https://nuxt-2-cc469-default-rtdb.firebaseio.com/posts.json"
     );
@@ -31,7 +31,7 @@ export default {
     for (const key in response.data) {
       posts.push({ ...response.data[key], id: key });
     }
-
+    context.store.dispatch("postModule/setPosts", posts);
     return { posts };
   },
   data() {

@@ -7,7 +7,7 @@
       <p class="text-h4 text--primary">{{ loadedPost.title }}</p>
       <div>
         <!-- Date -->
-        <p class="my-0">Last updated:{{ loadedPost.date }}</p>
+        <p class="my-0">Last updated:{{ loadedPost.lastUpdated }}</p>
         <!-- Author -->
         <p>Written By:{{ loadedPost.author }}</p>
       </div>

@@ -47,9 +47,14 @@ export default {
       this.show = false;
     },
     async editPost(editedPost) {
-      await putRequest(this.$route.params.postId, editedPost);
-      
-      this.$router.push("/");
+      const post = { id: this.$route.params.postId, ...editedPost };
+      try {
+        await putRequest(this.$route.params.postId, editedPost);
+        await this.$store.dispatch("postModule/editPost", post);
+        this.$router.push("/admin");
+      } catch (e) {
+        console.log(e.message);
+      }
     },
   },
   created() {

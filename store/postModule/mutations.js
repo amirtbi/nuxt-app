@@ -9,4 +9,12 @@ export default {
     console.log("Found post", postFind);
     state.foundPost = postFind;
   },
+  editPost(state, payload) {
+    console.log("mutation from edited post", payload);
+    const indexOfPost = state.loadedPosts.findIndex(
+      (post) => post.id === payload.id
+    );
+    console.log("index of loaded post", indexOfPost);
+    state.loadedPosts[indexOfPost] = payload;
+  },
 };

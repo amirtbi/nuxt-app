@@ -27,12 +27,15 @@ export async function deleteRequest(url, payload) {
     console.log(error);
   }
 }
-export async function putRequest(Id, post) {
+export async function putRequest(id, post) {
   try {
-    const api = "/posts/" + Id + ".json";
+    const api = "/posts/" + id + ".json";
 
     console.log("api", api);
-    const response = await axiosClient.put(api, post);
+    const response = await axiosClient.put(api, {
+      ...post,
+      lastUpdated: new Date().toLocaleTimeString(),
+    });
     console.log(response.data);
     return response.data;
   } catch (error) {
@@ -42,7 +45,10 @@ export async function putRequest(Id, post) {
 
 export async function postRequest(url, payload) {
   try {
-    const response = await axiosClient.post(`/${url}.json`, payload);
+    const response = await axiosClient.post(`/${url}.json`, {
+      lastUpdated: new Date().toLocaleTimeString(),
+      ...payload,
+    });
 
     return response.data;
   } catch (error) {

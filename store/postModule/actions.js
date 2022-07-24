@@ -15,7 +15,6 @@ export default {
         for (const key in res.data) {
           postArray.push({
             ...res.data[key],
-            id: key,
           });
           console.log(postArray);
         }
@@ -40,9 +39,8 @@ export default {
       context.dispatch("setPosts", postArray);
     }
   },
-  async editPost(context) {
-    await putRequest(postId, post);
-    await context.dispatch("fetchPosts");
-    console.log("Edited post", response);
+  async editPost(context, post) {
+    console.log("edited psot:", post);
+    context.commit("editPost", post);
   },
 };

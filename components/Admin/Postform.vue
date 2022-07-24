@@ -103,7 +103,6 @@ export default {
       const formIsValid = this.$refs.form.validate();
       if (formIsValid) {
         const newPost = {
-          id: new Date().toISOString(),
           title: this.editedPost.title,
           author: this.editedPost.author,
           previewText: this.editedPost.previewText,

@@ -53,10 +53,6 @@ export default {
       required: false,
       default: "",
     },
-    editPost: {
-      type: Boolean,
-      required: false,
-    },
   },
   data() {
     return {
@@ -102,15 +98,14 @@ export default {
     async emitPost() {
       const formIsValid = this.$refs.form.validate();
       if (formIsValid) {
-        const newPost = {
-          id: new Date().toISOString(),
+        const editedPost = {
           title: this.editedPost.title,
           author: this.editedPost.author,
           previewText: this.editedPost.previewText,
           imageUrl: this.editedPost.imageUrl,
         };
-        
-        this.modifyPost(newPost);
+
+        this.modifyPost(editedPost);
 
         this.cancelHanlder();
       }

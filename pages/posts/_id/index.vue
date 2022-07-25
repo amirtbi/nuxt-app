@@ -6,7 +6,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import axios from "axios";
+
 import PostItem from "../../../components/Posts/post.vue";
 export default {
   layout: "default",
@@ -15,7 +15,7 @@ export default {
   },
 
   async asyncData(context) {
-    const response = await axios.get(
+    const response = await context.app.$axios.get(
       "https://nuxt-2-cc469-default-rtdb.firebaseio.com/posts/" +
         context.params.id +
         ".json"

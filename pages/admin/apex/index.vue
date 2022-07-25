@@ -31,7 +31,7 @@ export default {
           showForSingleSeries: false,
           showForNullSeries: true,
           showForZeroSeries: true,
-          position: "left",
+          position: "right",
           horizontalAlign: "center",
           floating: false,
           fontSize: "14px",

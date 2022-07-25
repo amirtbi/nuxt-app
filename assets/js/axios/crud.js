@@ -34,7 +34,7 @@ export async function putRequest(id, post) {
     console.log("api", api);
     const response = await axiosClient.put(api, {
       ...post,
-      lastUpdated: new Date().toLocaleTimeString(),
+      lastUpdated: new Date(),
     });
     console.log(response.data);
     return response.data;
@@ -46,7 +46,7 @@ export async function putRequest(id, post) {
 export async function postRequest(url, payload) {
   try {
     const response = await axiosClient.post(`/${url}.json`, {
-      lastUpdated: new Date().toLocaleTimeString(),
+      lastUpdated: new Date(),
       ...payload,
     });
 

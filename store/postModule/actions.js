@@ -1,10 +1,5 @@
+import { getRequest, postRequest } from "../../assets/js/axios/crud.js";
 import axios from "axios";
-import {
-  getRequest,
-  postRequest,
-  putRequest,
-} from "../../assets/js/axios/crud.js";
-
 export default {
   nuxtServerInit(vueContext) {
     return axios

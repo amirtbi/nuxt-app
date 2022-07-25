@@ -4,7 +4,7 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: "%s - nuxi-app",
-    title: "nuxi-app",
+    title: "Nux2 app",
     htmlAttrs: {
       lang: "en",
     },
@@ -39,6 +39,9 @@ export default {
   plugins: [
     { src: "~/plugins/vuechart.plugin.js", ssr: false },
     { src: "~/plugins/composition.plugin.js" },
+    { src: "~/plugins/core-components.js" },
+    { src: "~/plugins/date-filter.js" },
+    { src: "~/plugins/apex-chart.js", ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -93,5 +96,24 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: ["lodash-es", "vue-chart-3"],
+    vendor: ["vue-apexchart"],
+  },
+  env: {
+    baseUrl:
+      process.env.BASE_URL ||
+      "https://nuxt-2-cc469-default-rtdb.firebaseio.com",
+  },
+  router: {
+    extendsRoutes(routes, resolve) {
+      routes.push({
+        path: "*",
+        component: resolve(__dirname, "pages/index.vue"),
+      });
+    },
+  },
+  // Define transition
+  transition: {
+    name: "fade",
+    mode: "out-in",
   },
 };

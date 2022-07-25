@@ -44,7 +44,6 @@
 import axios from "axios";
 import { postRequest } from "../../assets/js/axios/crud";
 import { mapActions, mapGetters } from "vuex";
-import PostForm from "../../components/Admin/Postform.vue";
 import BaseButton from "../../components/UI/BaseButton.vue";
 import PostLists from "../../components/Posts/PostLists.vue";
 
@@ -52,7 +51,6 @@ export default {
   components: {
     PostLists,
     BaseButton,
-    PostForm,
   },
   layout: "default",
 
@@ -84,8 +82,6 @@ export default {
       this.show = !this.show;
     },
   },
-  created(){
-    
-  }
+  created() {},
 };
 </script>

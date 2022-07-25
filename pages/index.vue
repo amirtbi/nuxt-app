@@ -13,18 +13,16 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import PostLists from "../components/Posts/PostLists.vue";
 import axios from "axios";
-import { getRequest } from "../assets/js/axios/crud";
-
 export default {
   components: {
     PostLists,
   },
   layout: "default",
   async asyncData(context) {
-    const response = await axios.get(
+    console.log("context", context);
+    const response = await context.app.$axios.get(
       "https://nuxt-2-cc469-default-rtdb.firebaseio.com/posts.json"
     );
     const posts = [];
@@ -37,6 +35,7 @@ export default {
   data() {
     return {};
   },
+
   computed: {
     posts() {
       return this.$store.getters["postModule/posts"];

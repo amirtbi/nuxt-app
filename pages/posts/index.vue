@@ -15,7 +15,7 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import axios from "axios";
+
 const Post = () => ({
   component: import("../../components/Posts/PostLists.vue"),
 });
@@ -26,7 +26,7 @@ export default {
   },
   layout: "default",
   async asyncData(context) {
-    const response = await axios.get(
+    const response = await context.app.$axios.get(
       "https://nuxt-2-cc469-default-rtdb.firebaseio.com/posts.json"
     );
     const posts = [];

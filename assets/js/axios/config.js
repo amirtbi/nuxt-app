@@ -4,7 +4,8 @@ import axios from "axios";
 const axiosClient = axios.create();
 
 axiosClient.defaults.baseURL =
-  "https://nuxt-2-cc469-default-rtdb.firebaseio.com";
+  // "https://nuxt-2-cc469-default-rtdb.firebaseio.com";
+  process.env.baseUrl;
 
 axiosClient.defaults.headers = {
   "Content-type": "application/json",

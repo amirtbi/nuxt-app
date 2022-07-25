@@ -1,126 +1,95 @@
 <template>
-  <div id="charts">
-    <div id="chart1">
-      <apexchart
-        type="line"
-        height="230"
-        :options="chartOptionsArea"
-        :series="series"
-      />
+  <v-card>
+    <div id="charts">
+      <div id="chart1">
+        <apexchart
+          type="donut"
+          height="230"
+          :options="chartOptions"
+          :series="series"
+        />
+      </div>
     </div>
-    <div id="chart2">
-      <apexchart
-        type="area"
-        height="130"
-        :options="chartOptionsBrush"
-        :series="series"
-      />
-    </div>
-  </div>
+  </v-card>
 </template>
 
 <script>
-import Vue from "vue";
-
-import VueApexCharts from "vue-apexcharts";
-Vue.use(VueApexCharts);
-Vue.component("apexchart", VueApexCharts);
-
 export default {
   name: "BrushCharts",
   data: function () {
     return {
-      series: [
-        {
-          data: this.generateDayWiseTimeSeries(
-            new Date("11 Feb 2017").getTime(),
-            185,
-            {
-              min: 30,
-              max: 90,
-            }
-          ),
-        },
-      ],
-      chartOptionsArea: {
+      series: [44, 55, 41, 17, 15],
+      chartOptions: {
         chart: {
-          id: "chartArea",
-          toolbar: {
-            autoSelected: "pan",
-            show: false,
-          },
-        },
-        colors: ["#546E7A"],
-        stroke: {
-          width: 3,
-        },
-        dataLabels: {
-          enabled: false,
+          type: "donut",
         },
         fill: {
-          opacity: 1,
+          type: "gradient",
         },
-        markers: {
-          size: 0,
-        },
-        xaxis: {
-          type: "datetime",
-        },
-      },
-      chartOptionsBrush: {
-        chart: {
-          id: "chartBrush",
-          brush: {
-            target: "chartArea",
-            enabled: true,
+        legend: {
+          show: true,
+          showForSingleSeries: false,
+          showForNullSeries: true,
+          showForZeroSeries: true,
+          position: "bottom",
+          horizontalAlign: "center",
+          floating: false,
+          fontSize: "14px",
+          fontFamily: "Helvetica, Arial",
+          fontWeight: 400,
+          formatter: undefined,
+          inverseOrder: false,
+          width: undefined,
+          height: undefined,
+          tooltipHoverFormatter: undefined,
+          customLegendItems: [],
+          offsetX: 0,
+          offsetY: 0,
+          labels: {
+            colors: undefined,
+            useSeriesColors: false,
           },
-          selection: {
-            enabled: true,
-            xaxis: {
-              min: new Date("19 Jun 2017").getTime(),
-              max: new Date("14 Aug 2017").getTime(),
+          markers: {
+            width: 20,
+            height: 20,
+            strokeWidth: 0,
+            strokeColor: "#fff",
+            fillColors: undefined,
+            radius: 12,
+            customHTML: undefined,
+            onClick: undefined,
+            offsetX: 0,
+            offsetY: 0,
+          },
+          itemMargin: {
+            horizontal: 5,
+            vertical: 0,
+          },
+          onItemClick: {
+            toggleDataSeries: true,
+          },
+          onItemHover: {
+            highlightDataSeries: true,
+          },
+        },
+        responsive: [
+          {
+            breakpoint: 480,
+            options: {
+              chart: {
+                width: 200,
+              },
+              legend: {
+                position: "top",
+              },
             },
           },
-        },
-        colors: ["#008FFB"],
-        fill: {
-          gradient: {
-            enabled: true,
-            opacityFrom: 0.91,
-            opacityTo: 0.1,
-          },
-        },
-        xaxis: {
-          type: "datetime",
-          tooltip: {
-            enabled: false,
-          },
-        },
-        yaxis: {
-          tickAmount: 2,
-        },
+        ],
       },
     };
   },
 
-  methods: {
-    generateDayWiseTimeSeries: function (baseval, count, yrange) {
-      var i = 0;
-      var series = [];
-      while (i < count) {
-        var x = baseval;
-        var y =
-          Math.floor(Math.random() * (yrange.max - yrange.min + 1)) +
-          yrange.min;
-
-        series.push([x, y]);
-        baseval += 86400000;
-        i++;
-      }
-
-      return series;
-    },
-  },
+  methods: {},
 };
 </script>
 

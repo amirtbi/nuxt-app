@@ -13,14 +13,10 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { axios } from "axios";
+
 import { putRequest } from "../../../assets/js/axios/crud";
-import AdminPostForm from "../../../components/Admin/AdminPost.vue";
 
 export default {
-  components: {
-    AdminPostForm,
-  },
   props: {
     postId: {
       type: String,
@@ -42,6 +38,7 @@ export default {
       return this.$route.params.postId;
     },
   },
+
   methods: {
     hideForm() {
       this.show = false;

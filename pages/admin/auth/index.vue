@@ -3,6 +3,7 @@
     <v-row align="center" justify="center">
       <v-col cols="12">
         <v-card width="700px">
+          <h3 v-if="loading">Sending data...</h3>
           <v-card-title class="text-center">
             Course Registeration
           </v-card-title>
@@ -40,7 +41,7 @@
             <v-autocomplete
               :items="professions"
               v-model="profession"
-              item-value="id"
+              item-value="field"
               item-text="field"
               outlined
               clearable
@@ -79,6 +80,7 @@ export default {
       titleRules: [(v) => !!v || "Title must be filled"],
 
       valid: true,
+      loading: false,
       course: {
         author: "",
         title: "",
@@ -113,21 +115,26 @@ export default {
   },
   methods: {
     setField(e) {
-      const idOfChosenField = e;
+      this.profession = e;
     },
     // clearForm() {
     //   this.$refs.form.reset();
     // },
     async submitForm() {
-      this.$refs.form.validate();
+      this.valid = true;
+      this.valid = this.$refs.form.validate();
       if (this.valid) {
+        this.loading = true;
         const postInfo = {
           title: this.course.title,
           author: this.course.author,
           imageUrl: this.course.image,
           previewText: this.course.description,
+          profession: this.profession,
         };
         await postRequest("posts", postInfo);
+        this.loading = false;
+        this.$router.push("/");
       }
     },
     uploadImageHandler(e) {

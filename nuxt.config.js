@@ -42,6 +42,7 @@ export default {
     { src: "~/plugins/core-components.js" },
     { src: "~/plugins/date-filter.js" },
     { src: "~/plugins/apex-chart.js", ssr: false },
+    { src: "~/plugins/vuelidate.js", ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -96,7 +97,7 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: ["lodash-es", "vue-chart-3"],
-    vendor: ["vue-apexchart"],
+    vendor: ["vue-apexchart", "vuelidate"],
   },
   env: {
     baseUrl:

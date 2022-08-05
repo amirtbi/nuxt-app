@@ -1604,7 +1604,7 @@
   optionalDependencies:
     "prettier" "^1.18.2 || ^2.0.0"
 
-"@vue/composition-api@^1.4.2", "@vue/composition-api@^1.4.3", "@vue/composition-api@^1.4.5", "@vue/composition-api@^1.4.6":
+"@vue/composition-api@^1.0.0-rc.1", "@vue/composition-api@^1.4.2", "@vue/composition-api@^1.4.3", "@vue/composition-api@^1.4.5", "@vue/composition-api@^1.4.6":
   "integrity" "sha512-hxOgLYR+wjuPX9bkP2pAPlqUs98XxBoa9DSLyp1z6+YR92wC42PZcZKs4d+VRtcv4udOv041Kss+F6ap5nj8YA=="
   "resolved" "https://registry.npmjs.org/@vue/composition-api/-/composition-api-1.7.0.tgz"
   "version" "1.7.0"
@@ -1648,6 +1648,20 @@
   "integrity" "sha512-4rSJemR2NQIo9Klm1vabqWjD8rs/ZaJSzMxkMNeJS6lHiUjjUeYFbooN19NgFjztubEKh3WlZUeOLVdbbUWHsw=="
   "resolved" "https://registry.npmjs.org/@vue/shared/-/shared-3.2.37.tgz"
   "version" "3.2.37"
+
+"@vuelidate/core@^2.0.0-alpha.44":
+  "integrity" "sha512-3DlCe3E0RRXbB+OfPacUetKhLmXzmnjeHkzjnbkc03p06mKm6h9pXR5pd6Mv4s4tus4sieuKDb2YWNmKK6rQeA=="
+  "resolved" "https://registry.npmjs.org/@vuelidate/core/-/core-2.0.0-alpha.44.tgz"
+  "version" "2.0.0-alpha.44"
+  dependencies:
+    "vue-demi" "^0.13.4"
+
+"@vuelidate/validators@^2.0.0-alpha.31":
+  "integrity" "sha512-+MFA9nZ7Y9zCpq383/voPDk/hiAmu6KqiJJhLOYB/FmrUPVoyKnuKnI9Bwiq8ok9GZlVkI8BnIrKPKGj9QpwiQ=="
+  "resolved" "https://registry.npmjs.org/@vuelidate/validators/-/validators-2.0.0-alpha.31.tgz"
+  "version" "2.0.0-alpha.31"
+  dependencies:
+    "vue-demi" "^0.13.4"
 
 "@webassemblyjs/ast@1.9.0":
   "integrity" "sha512-C6wW5L+b7ogSDVqymbkkvuW9kruN//YisMED04xzeBBqjHa2FYnmvOlS6Xj68xWQRgWvI9cIglsjFowH/RJyEA=="
@@ -8277,6 +8291,11 @@
   "resolved" "https://registry.yarnpkg.com/vue-client-only/-/vue-client-only-2.1.0.tgz"
   "version" "2.1.0"
 
+"vue-demi@^0.13.4":
+  "integrity" "sha512-02NYpxgyGE2kKGegRPYlNQSL1UWfA/+JqvzhGCOYjhfbLWXU5QQX0+9pAm/R2sCOPKr5NBxVIab7fvFU0B1RxQ=="
+  "resolved" "https://registry.npmjs.org/vue-demi/-/vue-demi-0.13.6.tgz"
+  "version" "0.13.6"
+
 "vue-hot-reload-api@^2.3.0":
   "integrity" "sha512-BXq3jwIagosjgNVae6tkHzzIk6a8MHFtzAdwhnV5VlvPTFxDCvIttgSiHWjdGoTJvXtmRu5HacExfdarRcFhog=="
   "resolved" "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz"
@@ -8349,6 +8368,11 @@
   "integrity" "sha512-x2284lgYvjOMj3Za7kqzRcUSxBboHqtgRE2zlos1qWaOye5yUmHn42LB1250NJBLRwEcdrB0JRwyPTEPhfQjiQ=="
   "resolved" "https://registry.yarnpkg.com/vue/-/vue-2.6.14.tgz"
   "version" "2.6.14"
+
+"vuelidate@^0.7.7":
+  "integrity" "sha512-pT/U2lDI67wkIqI4tum7cMSIfGcAMfB+Phtqh2ttdXURwvHRBJEAQ0tVbUsW9Upg83Q5QH59bnCoXI7A9JDGnA=="
+  "resolved" "https://registry.npmjs.org/vuelidate/-/vuelidate-0.7.7.tgz"
+  "version" "0.7.7"
 
 "vuetify-loader@^1.7.3":
   "integrity" "sha512-1Kt6Rfvuw3i9BBlxC9WTMnU3WEU7IBWQmDX+fYGAVGpzWCX7oHythUIwPCZGShHSYcPMKSDbXTPP8UvT5RNw8Q=="

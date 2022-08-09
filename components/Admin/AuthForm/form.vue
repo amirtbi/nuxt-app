@@ -1,32 +1,24 @@
 <template>
   <validation-observer ref="observer" v-slot="{ invalid }">
     <v-form @submit.prevent="emitHandler" class="pa-4">
-      <validation-provider v-slot="{ errors }" name="Author" rules="required">
-        <v-text-field
-          :error-messages="errors"
-          outlined
-          required
-          label="Author"
-          v-model="course.author"
-        >
-        </v-text-field>
-      </validation-provider>
-      <validation-provider v-slot="{ errors }" rules="required" name="Title">
-        <v-text-field
-          outlined
-          label="Title"
-          :error-messages="errors"
-          v-model="course.title"
-          required
-        >
-        </v-text-field>
-      </validation-provider>
       <validation-provider
+        v-for="(field, index) in validations"
         v-slot="{ errors }"
-        name="description"
+        :name="field.name"
         rules="required"
+        :key="index"
       >
+        <v-text-field
+          v-if="field.name !== 'description'"
+          :error-messages="errors"
+          outlined
+          required
+          :label="field.name"
+          v-model="course[field.name]"
+        >
+        </v-text-field>
         <v-textarea
+          v-if="field.name === 'description'"
           :error-messages="errors"
           outlined
           label="Description"
@@ -35,25 +27,18 @@
         >
         </v-textarea>
       </validation-provider>
-      <validation-provider
-        name="Profession"
-        v-slot="{ errors }"
-        rules="required"
-      >
-        <v-autocomplete
-          :items="professions"
-          v-model="profession"
-          :error-messages="errors"
-          item-value="field"
-          item-text="field"
-          outlined
-          clearable
-          small-chips
-          label="Field"
-          @change="setField($event)"
-        ></v-autocomplete>
-      </validation-provider>
-
+      <v-autocomplete
+        :items="professions"
+        v-model="profession"
+        :error-messages="errors"
+        item-value="field"
+        item-text="field"
+        outlined
+        clearable
+        small-chips
+        label="Field"
+        @change="setField($event)"
+      ></v-autocomplete>
       <v-file-input
         prepend-inner-icon="mdi-tooltip-image-outline"
         outlined
@@ -64,7 +49,6 @@
       </v-file-input>
 
       <v-btn type="submit" color="success" :disabled="invalid"> Submit</v-btn>
-      <!-- <v-btn @click="clearForm" color="error"> Cancel</v-btn> -->
     </v-form>
   </validation-observer>
 </template>
@@ -88,6 +72,11 @@ export default {
         { field: "Mobile App", id: 3 },
       ],
       profession: "",
+      validations: [
+        { name: "author", input: "course.author" },
+        { name: "Title", input: "course.title" },
+        { name: "description", input: "course.description" },
+      ],
     };
   },
   computed: {

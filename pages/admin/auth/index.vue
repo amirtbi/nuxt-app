@@ -1,7 +1,7 @@
 <template>
   <v-container class="mt-4">
     <v-row align="center" justify="center">
-      <v-col cols="12">
+      <v-col cols="12" class="d-flex align-items-center justify-center">
         <v-card width="700px">
           <h3 v-if="loading">Sending data...</h3>
           <v-card-title class="text-center">

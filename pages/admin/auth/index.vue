@@ -1,66 +1,49 @@
 <template>
-  <section class="d-flex flex-column">
-    <v-card class="pa-4">
-      <v-form
-        v-model="valid"
-        lazy-validation
-        width="600"
-        class="pa-6"
-        ref="form"
-      >
-        <v-text-field v-model="category.title" label="title"> </v-text-field>
-        <v-text-field v-model="category.author" label="author"></v-text-field>
-        <v-btn color="primary" @click="saveCategory"> Save </v-btn>
-      </v-form>
-    </v-card>
-    <v-container>
-      <v-row>
-        <v-col cols="4" v-for="(item, i) in categories" :key="i">
-          <v-card class="mt-lg" max-width="500">
-            <v-card-text>
-              {{ item.title }}
-            </v-card-text>
-            <v-card-text>
-              {{ item.author }}
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
-      <div class="pa-4">
-        <div>
-          <h1 v-for="(item, index) in posts" :key="index">
-            Post title:{{ item.title }}
-          </h1>
-        </div>
-      </div>
-    </v-container>
-  </section>
+  <v-container class="mt-4">
+    <v-row align="center" justify="center">
+      <v-col cols="12" class="d-flex align-items-center justify-center">
+        <v-card width="700px">
+          <h3 v-if="loading">Sending data...</h3>
+          <v-card-title class="text-center">
+            Course Registeration
+          </v-card-title>
+          <RegistrationForm @emitForm="submitForm" />
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
+
 <script>
-import { mapGetters } from "vuex";
+import { postRequest } from "~/assets/js/axios/crud.js";
+import RegistrationForm from "../../../components/Admin/AuthForm/form.vue";
 export default {
+  components: {
+    RegistrationForm,
+  },
   data() {
     return {
-      category: { title: "", author: "" },
-      valid: false,
+      loading: false,
     };
   },
+
   methods: {
-    saveCategory() {
-      this.valid = true;
-      if (this.category.title != "" && this.category.author != "") {
-        const newCatgeory = { ...this.category, id: new Date().toISOString };
-        this.$store.dispatch("adminModule/setCategory", newCatgeory);
-      } else {
-        this.valid = false;
-      }
+    // clearForm() {
+    //   this.$refs.form.reset();
+    // },
+    async submitForm(formInfo) {
+      this.loading = true;
+      await postRequest("posts", formInfo);
+      this.loading = false;
+      this.$router.push("/");
     },
-  },
-  computed: {
-    ...mapGetters("adminModule", {
-      posts: "showLoadPosts",
-      categories: "categories",
-    }),
   },
 };
 </script>
+
+<style scoped>
+.avatar-bg {
+  background-color: #ccc !important;
+  border: 1px solid #ccc !important;
+}
+</style>

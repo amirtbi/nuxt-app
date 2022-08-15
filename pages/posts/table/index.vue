@@ -85,7 +85,7 @@ export default {
           iron: "0%",
         },
         {
-          name: "Lollipop",
+          name: "Lollipo",
           calories: 392,
           fat: 0.2,
           carbs: 98,

@@ -31,8 +31,11 @@ export default {
           showForSingleSeries: false,
           showForNullSeries: true,
           showForZeroSeries: true,
+
           position: "top",
+
           horizontalAlign: "top",
+
           floating: false,
           fontSize: "14px",
           fontFamily: "Helvetica, Arial",

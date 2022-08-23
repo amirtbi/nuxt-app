@@ -72,13 +72,18 @@ export default {
   data() {
     return {
       drawer: false,
-      group: null,
+
       menu: false,
       card: false,
       navLinks: [
         { title: "Home", icon: "mdi-home", route: "/" },
         { title: "About", icon: "mdi-store-cog", route: "/about" },
         { title: "Blog", icon: "mdi-inbox", route: "/posts" },
+        {
+          title: "Table",
+          icon: "mdi-file-table",
+          route: "/posts/table",
+        },
         { title: "Admin", icon: "mdi-shield-crown-outline", route: "/admin" },
       ],
       links: [

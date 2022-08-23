@@ -79,7 +79,7 @@ export default {
       this.show = false;
     },
     clickListener() {
-      this.show = !this.show;
+      this.$router.push("/admin/auth");
     },
   },
   created() {},

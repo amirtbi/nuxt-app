@@ -24,7 +24,32 @@
       filled
       prepend-icon="mdi-camera"
     ></v-text-field>
-
+    <v-autocomplete
+      :items="people"
+      item-text="name"
+      item-value="name"
+      v-model="values"
+      label="profession"
+      chips
+      rounded
+      multiple
+      @change="display"
+    >
+      <template v-slot:selection="data">
+        <v-chip
+          v-bind="data.attrs"
+          :input-value="data.selected"
+          close
+          @click="data.select"
+          @click:close="remove(data.item)"
+        >
+          <v-avatar left>
+            <v-img :src="data.item.avatar"></v-img>
+          </v-avatar>
+          {{ data.item.name }}
+        </v-chip>
+      </template>
+    </v-autocomplete>
     <!-- <v-file-input
       label="File input"
       v-model="chosenImage"
@@ -59,7 +84,30 @@ export default {
     },
   },
   data() {
+    const srcs = {
+      1: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+      2: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
+      3: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
+      4: "https://cdn.vuetifyjs.com/images/lists/4.jpg",
+      5: "https://cdn.vuetifyjs.com/images/lists/5.jpg",
+    };
     return {
+      people: [
+        { header: "Group 1" },
+        { name: "Sandra Adams", group: "Group 1", avatar: srcs[1] },
+        { name: "Ali Connors", group: "Group 1", avatar: srcs[2] },
+        { name: "Trevor Hansen", group: "Group 1", avatar: srcs[3] },
+        { name: "Tucker Smith", group: "Group 1", avatar: srcs[2] },
+        { divider: true },
+        { header: "Group 2" },
+        { name: "Britta Holt", group: "Group 2", avatar: srcs[4] },
+        { name: "Jane Smith ", group: "Group 2", avatar: srcs[5] },
+        { name: "John Smith", group: "Group 2", avatar: srcs[1] },
+        { name: "Sandra Williams", group: "Group 2", avatar: srcs[3] },
+      ],
+      items: ["Frontend", "Backend", "Fullstack", "Python developer"],
+      values: [],
+
       valid: true,
       editedPost: this.loadedPost
         ? { ...this.loadedPost }
@@ -75,6 +123,15 @@ export default {
   },
 
   methods: {
+    display(e) {
+      console.log("values", e);
+    },
+    remove(person) {
+      const index = this.values.findIndex(
+        (item) => person.name === person.name
+      );
+      this.values.splice(index, 1);
+    },
     importImage() {
       var reader = new FileReader();
       reader.readAsDataURL(this.chosenImage);

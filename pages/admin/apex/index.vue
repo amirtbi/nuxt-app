@@ -34,7 +34,8 @@ export default {
 
           position: "top",
 
-          horizontalAlign: "center",
+          horizontalAlign: "top",
+
           floating: false,
           fontSize: "14px",
           fontFamily: "Helvetica, Arial",
